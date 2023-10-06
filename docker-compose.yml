@@ -2,7 +2,8 @@ version: "3"
 
 services:
   web:
-    build: ./frontend
+    image: mohtheghost/momoapp:latest
+    restart: always
     depends_on:
       - api
     ports:
@@ -10,7 +11,8 @@ services:
     networks:
       - network-backend
   api:
-    build: ./backend
+    image: mohtheghost/momoappback:latest
+    restart: always
     depends_on:
       - mongo
     ports:
@@ -26,8 +28,8 @@ services:
     environment: 
       MONGODB_INITDB_ROOT_USERNAME: username
       MONGODB_INITDB_ROOT_PASSWORD: password
-    ports:
-      - 27017:27017
+    #ports:
+    #  - 27017:27017
     networks: 
      - network-backend
 
